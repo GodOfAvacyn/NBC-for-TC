@@ -9,6 +9,23 @@ import numpy as np
 from NBC import BinaryNBC
 from NBC import FeatureExctractor
 
+X = [
+    [1,0,0],
+    [0,1,0],
+    [1,0,0],
+    [0,0,1],
+    [1,0,0]
+]
+
+y = [1,0,1,0,1]
+
+nbc = BinaryNBC(X,y)
+
+p1 = nbc.predict([1,0,0])
+p2 = nbc.predict([0,1,0])
+print(p1)  # Will predict class "1"
+print(p2)  # Will predict class "0"
+
 
 # Example of tensorflow usage
 
@@ -26,6 +43,4 @@ Q.add(layers.Conv2D(5,(3,3), padding="same",activation="relu"))
 
 extractor = FeatureExctractor(A,Q)
 ems = extractor.get_hypervolume_emissions(tf.random.normal(input_shape))
-
-# Should print a row of 3 emissions
 print(ems)
